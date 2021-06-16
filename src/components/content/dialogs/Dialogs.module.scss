@@ -1,0 +1,17 @@
+@import "src/defaultStyle/index";
+
+.dialog {
+  margin: 20px;
+  border-bottom: 5px solid #5c5c5c;
+  .dialog__users {
+    width: 30%;
+    border: 2px solid #bfbfbf;
+    .dialog__user {
+
+    }
+  }
+  .dialog__message {
+    width: 70%;
+    border: 2px solid #bfbfbf;
+  }
+}

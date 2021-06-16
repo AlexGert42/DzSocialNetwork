@@ -1,12 +1,17 @@
-
+import {Content} from './components/content/Content'
+import {Header} from './components/header/Header'
+import {Footer} from './components/footer/Footer'
+import { BrowserRouter } from 'react-router-dom'
 
 
 export const App = () => {
 
   return (
-      <>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus cupiditate doloremque ducimus, eaque eius excepturi facere fuga illum nobis non, nostrum officia officiis perspiciatis porro quia quis unde vero, voluptates.
-      </>
+      <BrowserRouter>
+          <Header/>
+          <Content/>
+          <Footer/>
+      </BrowserRouter>
   )
 }
 

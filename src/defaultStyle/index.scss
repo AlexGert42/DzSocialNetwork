@@ -1,0 +1,16 @@
+$foneColor: #5c5c5c;
+$navBlockColor: #302f30;
+$navbarBlockColor: #4c4b4b;
+$contentColor: #454545;
+$TextColor: #bfbfbf;
+$titleColorOrange: #fead00;
+$titleColorBlue: #22c1c3;
+
+
+@import "reset.scss";
+
+
+body {
+  background-color: $foneColor;
+  color: $TextColor;
+}
