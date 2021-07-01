@@ -2,6 +2,14 @@ import { v1 } from "uuid"
 import {ADD_POST, REMOVE_POST} from "./actions";
 
 
+
+export type actionType = {
+    type: string
+    payload: any
+}
+
+
+
 const initialState = {
     posts: [
         {id: v1(), name: 'viktor', text: 'hfdghfgh fjdsh jgbdsg bgfb ghfb hgfbghf gfdgfd gfgf'},
@@ -11,19 +19,19 @@ const initialState = {
     ],
 }
 
-export const postReducer = (state = initialState, action: any) => {
+export const postReducer = (state = initialState, action: actionType) => {
 
     switch (action.type) {
         case ADD_POST :
             let newPosts = [...state.posts]
-            newPosts.push(action.newPost)
+            newPosts.push(action.payload)
             return {
                 ...state,
                 posts: newPosts
             }
         case REMOVE_POST :
             let filterPosts = [...state.posts]
-            filterPosts = filterPosts.filter(el => el.id !== action.id)
+            filterPosts = filterPosts.filter(el => el.id !== action.payload)
            return {
                ...state,
                posts: filterPosts

@@ -6,14 +6,14 @@
   height: 100%;
   display: flex;
   .content__page {
-    position: relative;
     border: 2px solid #242424;
     margin: 30px;
     width: 70%;
     top: 130px;
-    left: 500px;
     height: 100%;
     background-color: $contentColor;
+    position: relative;
+    left: 350px;
   }
   .content__nav {
     top: 113px;

@@ -10,11 +10,11 @@ export const addPost = (text: string) => {
     }
     return {
         type: ADD_POST,
-        newPost,
+        payload: newPost,
     }
 }
 
-export const removePost = (id: string) => ({type: REMOVE_POST, id})
+export const removePost = (id: string) => ({type: REMOVE_POST, payload: id})
 
 
 

@@ -1,8 +1,9 @@
 import s from './Content.module.scss'
 import {Navbar} from './navbar/Navbar'
 import {Profile} from './profile/Profile'
-import {Dialogs} from './dialogs/Dialogs'
+import DialogsContainer from './dialogs/DialogsContainer'
 import {Redirect, Route, Switch} from "react-router-dom";
+import UsersContainer from './users/UsersContainer';
 
 
 export const Content = () => {
@@ -16,7 +17,8 @@ export const Content = () => {
                 <Switch>
                     <Route path={'/'} exact render={() => <Redirect to={'/profile'}/>}/>
                     <Route path={'/profile'} component={Profile}/>
-                    <Route path={'/dialogs'} component={Dialogs}/>
+                    <Route path={'/dialogs'} component={DialogsContainer}/>
+                    <Route path={'/users'} component={UsersContainer}/>
                 </Switch>
             </div>
         </main>

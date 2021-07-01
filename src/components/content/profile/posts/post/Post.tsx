@@ -1,6 +1,15 @@
 
+type postPropsType = {
+    style: any
+    id: string
+    userName: string
+    text: string
+    deletePost: (id: string) => void
+}
 
-export const Post = ({style, id, userName, text, deletePost}: any) => {
+
+
+export const Post = ({style, id, userName, text, deletePost}: postPropsType) => {
 
 
     return (

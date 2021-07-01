@@ -1,29 +1,41 @@
 import {Post} from './post/Post'
-import s from './Posts.module.scss'
-import {useState} from "react";
+import React, {useState} from "react";
+import {postType} from "./PostsContainer";
+
+
+type postsPropsTYpe = {
+    posts: Array<postType>
+    deletePost: (id: string) => void
+    attachPost: (text: string) => void
+    style: any
+}
 
 
 
 
-
-export const Posts = ({posts, deletePost, attachPost}: any) => {
+export const Posts = ({posts, deletePost, attachPost, style}: postsPropsTYpe) => {
     const [value, setValue] = useState('')
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        attachPost(value)
+        if (value.trim()) {
+            attachPost(value)
+            setValue('')
+        }
+
+
     }
 
     return (
-        <div className={s.posts}>
+        <div className={style.posts}>
             <form onSubmit={handleSubmit}>
-                <textarea value={value} onChange={e => setValue(e.target.value)} placeholder={'Enter Text'}/>
+                <textarea value={value} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value)} placeholder={'Enter Text'}/>
                 <button type="submit">Enter</button>
             </form>
-          <div className={s.posts__inner}>
-              {!posts ? false : posts.map((el: any) => {
+          <div className={style.posts__inner}>
+              {!posts ? false : posts.map((el: postType) => {
                   return (
-                      <Post style={s} id={el.id} userName={el.name} text={el.text} deletePost={deletePost}/>
+                      <Post style={style} id={el.id} userName={el.name} text={el.text} deletePost={deletePost}/>
                   )
               })}
           </div>

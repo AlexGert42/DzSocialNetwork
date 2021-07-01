@@ -14,3 +14,10 @@ body {
   background-color: $foneColor;
   color: $TextColor;
 }
+
+a {
+  color: #bfbfbf;
+  &:hover {
+    font-weight: bold;
+  }
+}
