@@ -1,8 +1,8 @@
 import style from './Posts.module.scss'
 import {Posts} from "./Posts";
 import {connect} from "react-redux";
-import {addPost} from '../../../../store/posts/actions'
-import {removePost} from "../../../../store/posts/actions";
+import {addPost} from '../../../../store/profile/actions'
+import {removePost} from "../../../../store/profile/actions";
 
 
 export type postType = {

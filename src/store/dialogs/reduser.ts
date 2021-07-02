@@ -1,5 +1,5 @@
 import { v1 } from "uuid";
-import {actionType} from "../posts/reduser";
+import {actionType} from "../profile/reduser";
 import {ADD_MESSAGE} from "./actions";
 
 

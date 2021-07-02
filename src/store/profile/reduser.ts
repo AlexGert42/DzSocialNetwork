@@ -17,6 +17,20 @@ const initialState = {
         {id: v1(), name: 'igor', text: 'hfdghfgh fjdsh jgbdsg bgfb ghfb hgfbghf gfdgfd gfgf'},
         {id: v1(), name: 'lix', text: 'hfdghfgh fjdsh jgbdsg bgfb ghfb hgfbghf gfdgfd gfgf'},
     ],
+    profile: {
+        fullName: '',
+        aboutMe: '',
+        contacts: {
+            facebook: '',
+            github: '',
+        },
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        photos: {
+            large: '',
+            small: ''
+        }
+    }
 }
 
 export const postReducer = (state = initialState, action: actionType) => {
