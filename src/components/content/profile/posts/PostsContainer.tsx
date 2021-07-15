@@ -3,6 +3,7 @@ import {Posts} from "./Posts";
 import {connect} from "react-redux";
 import {addPost} from '../../../../store/profile/actions'
 import {removePost} from "../../../../store/profile/actions";
+import {StoreType} from "../../../../store/reducers";
 
 
 export type postType = {
@@ -29,9 +30,9 @@ const PostsContainer = ({posts, addPost, removePost}: postPropsType) => {
     )
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: StoreType) => {
     return {
-        posts: state.postReducer.posts
+        posts: state.profileReducer.posts
     }
 }
 
@@ -39,6 +40,7 @@ const mapDispatchToProps = {
     addPost,
     removePost
 }
+
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsContainer)

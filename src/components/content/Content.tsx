@@ -16,7 +16,7 @@ export const Content = () => {
             <div className={s.content__page}>
                 <Switch>
                     <Route path={'/'} exact render={() => <Redirect to={'/profile'}/>}/>
-                    <Route path={'/profile'} component={ProfileContainer}/>
+                    <Route path={'/profile/:userId'} component={ProfileContainer}/>
                     <Route path={'/dialogs'} component={DialogsContainer}/>
                     <Route path={'/users'} component={UsersContainer}/>
                 </Switch>

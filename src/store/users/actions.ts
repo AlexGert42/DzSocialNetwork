@@ -1,5 +1,5 @@
 
-import {CHENGE_COUNT, GET_USERS, LOADING, TOTAL_COUNT} from "./reduser";
+import {CHENGE_COUNT, GET_USERS, LOADING, TOTAL_COUNT, FOLOWED} from "./reduser";
 
 
 export const getUsersAction = (users: any) => ({
@@ -19,5 +19,10 @@ export const chengePageAction = (count: any) => ({
 
 export const loaderAction = (value: any) => ({
     type: LOADING,
+    payload: value
+})
+
+export const folowedAction = (value: any) => ({
+    type: FOLOWED,
     payload: value
 })

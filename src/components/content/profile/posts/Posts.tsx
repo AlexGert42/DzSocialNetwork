@@ -35,7 +35,7 @@ export const Posts = ({posts, deletePost, attachPost, style}: postsPropsTYpe) =>
           <div className={style.posts__inner}>
               {!posts ? false : posts.map((el: postType) => {
                   return (
-                      <Post style={style} id={el.id} userName={el.name} text={el.text} deletePost={deletePost}/>
+                      <Post key={el.id} style={style} id={el.id} userName={el.name} text={el.text} deletePost={deletePost}/>
                   )
               })}
           </div>

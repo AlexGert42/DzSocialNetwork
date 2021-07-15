@@ -8,6 +8,8 @@
   z-index: 1;
   .header__inner {
     padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
     .header__logo {
 
       text-transform: capitalize;
@@ -17,6 +19,11 @@
       background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(254,173,0,1) 83%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+    .header__login {
+      padding: 15px;
+      border: 1px solid #fff;
+      font-size: 19px;
     }
   }
 }

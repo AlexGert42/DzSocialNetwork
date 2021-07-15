@@ -2,12 +2,14 @@ export const GET_USERS = 'GET_USERS'
 export const TOTAL_COUNT = 'TOTAL_COUNT'
 export const CHENGE_COUNT = 'CHENGE_COUNT'
 export const LOADING = 'LOADING'
+export const FOLOWED = 'FOLOWED'
 
 const initialState = {
     users: [],
     pageCount: 1,
     totalCount: 0,
-    loader: false
+    loader: false,
+    folowed: false
 }
 
 export const userReducer = (state = initialState, action: any) => {
@@ -31,6 +33,11 @@ export const userReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 loader: action.payload
+            }
+        case FOLOWED:
+            return {
+                ...state,
+                folowed: action.payload
             }
         default: return state
     }

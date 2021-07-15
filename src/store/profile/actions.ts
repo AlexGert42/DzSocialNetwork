@@ -1,8 +1,18 @@
 import { v1 } from "uuid"
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_TEST'
+export const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
-export const addPost = (text: string) => {
+export type AddPostType = {
+    type: 'ADD_POST'
+    payload: {
+        id: string
+        name: string
+        text: string
+    }
+}
+
+export const addPost = (text: string): AddPostType => {
     let newPost = {
         id: v1(),
         name: 'alex',
@@ -14,7 +24,23 @@ export const addPost = (text: string) => {
     }
 }
 
-export const removePost = (id: string) => ({type: REMOVE_POST, payload: id})
+export type RemovePostType = {
+    type: 'REMOVE_TEST'
+    payload: string
+}
+export const removePost = (id: string): RemovePostType => ({
+    type: REMOVE_POST,
+    payload: id
+})
+
+export type SetUserProfileType = {
+    type: 'SET_USER_PROFILE'
+    payload: any
+}
+export const setUserProfile = (profile: any): SetUserProfileType => ({
+    type: SET_USER_PROFILE,
+    payload: profile
+})
 
 
 

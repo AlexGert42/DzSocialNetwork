@@ -42,7 +42,36 @@ export const Users = (props: any) => {
                                         <img src={avatar_smoll} alt="Avatar"/>
                                     </NavLink>}
                             </p>
-                            <button>{el.followed ? 'Folov' : 'Onfolov'}</button>
+                            {
+                                el.followed?
+                                    <button onClick={() => {
+                                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {
+                                            withCredentials: true,
+                                            headers: {
+                                                "API-KEY": '9708f55c-7c56-4108-a0bf-76b37c22e7d1'
+                                            }
+                                        }).then(res => {
+                                            console.log(res)
+                                        })
+                                    }
+                                    }>Follov</button>
+                                    :
+                                    <button onClick={() => {
+                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {
+                                            withCredentials: true,
+                                            headers: {
+                                                "API-KEY": '9708f55c-7c56-4108-a0bf-76b37c22e7d1'
+                                            }
+                                        })
+                                            .then(res => {
+                                                console.log(res)
+                                                props.folowedAction(true)
+                                            })
+                                    }
+                                    }>Onfollov</button>
+                            }
+
+
                         </span>
                             <span>
                             <p>{el.name}</p>

@@ -1,5 +1,5 @@
 import { v1 } from "uuid";
-import {actionType} from "../profile/reduser";
+
 import {ADD_MESSAGE} from "./actions";
 
 
@@ -46,7 +46,7 @@ const initialState = {
     ]
 }
 
-export const dialodsReduscer = (state = initialState, action: actionType) => {
+export const dialodsReduscer = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_MESSAGE :
             let newMessage = [...state.message[action.payload[1]]]

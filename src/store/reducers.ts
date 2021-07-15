@@ -1,14 +1,18 @@
 import {combineReducers, createStore} from 'redux'
-import {postReducer} from "./profile/reduser";
+import {profileReducer} from "./profile/reduser";
 import {dialodsReduscer} from "./dialogs/reduser";
 import {userReducer} from "./users/reduser";
+import {authReduscer} from "./auth/reduser";
 
 
-export const rootReducer: any = combineReducers({
-    postReducer,
+export const rootReducer = combineReducers({
+    profileReducer,
     dialodsReduscer,
-    userReducer
+    userReducer,
+    authReduscer
 });
+
+export type StoreType = ReturnType<typeof rootReducer>
 
 export const store = createStore(rootReducer)
 
