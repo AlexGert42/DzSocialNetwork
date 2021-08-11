@@ -2,14 +2,15 @@ export const GET_USERS = 'GET_USERS'
 export const TOTAL_COUNT = 'TOTAL_COUNT'
 export const CHENGE_COUNT = 'CHENGE_COUNT'
 export const LOADING = 'LOADING'
-export const FOLOWED = 'FOLOWED'
+export const FOLLOWED = 'FOLLOWED'
+export const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS'
 
 const initialState = {
     users: [],
     pageCount: 1,
     totalCount: 0,
     loader: false,
-    folowed: false
+    followingDisabled: false
 }
 
 export const userReducer = (state = initialState, action: any) => {
@@ -34,10 +35,24 @@ export const userReducer = (state = initialState, action: any) => {
                 ...state,
                 loader: action.payload
             }
-        case FOLOWED:
+        case FOLLOWED:
+            let mewUsers = [...state.users].map((el: any) => {
+                if (el.id === action.payload) {
+                    return {
+                        ...el,
+                        followed: !el.followed
+                    }
+                }
+                return el
+            })
             return {
                 ...state,
-                folowed: action.payload
+                users: mewUsers
+            }
+        case FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingDisabled: action.payload
             }
         default: return state
     }

@@ -1,5 +1,5 @@
 
-import {CHENGE_COUNT, GET_USERS, LOADING, TOTAL_COUNT, FOLOWED} from "./reduser";
+import {CHENGE_COUNT, GET_USERS, LOADING, TOTAL_COUNT, FOLLOWED, FOLLOWING_PROGRESS} from "./reduser";
 
 
 export const getUsersAction = (users: any) => ({
@@ -22,7 +22,12 @@ export const loaderAction = (value: any) => ({
     payload: value
 })
 
-export const folowedAction = (value: any) => ({
-    type: FOLOWED,
+export const followedAction = (id: any) => ({
+    type: FOLLOWED,
+    payload: id
+})
+
+export const followingDisabledAction = (value: any) => ({
+    type: FOLLOWING_PROGRESS,
     payload: value
 })

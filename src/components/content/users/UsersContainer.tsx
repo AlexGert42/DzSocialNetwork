@@ -1,25 +1,22 @@
 import {connect} from "react-redux"
 import {Users} from "./Users"
-import axios from "axios"
 import {
     chengePageAction,
-    folowedAction,
+    followedAction, followingDisabledAction,
     getTotalCountAction,
     getUsersAction,
     loaderAction
 } from "../../../store/users/actions";
 import React from "react";
+import {getFollowing, getUnFollowing, usersAPI} from "../../../api/api";
 
 class UsersContainer extends React.Component<any, any> {
 
     componentDidMount() {
         this.props.loaderAction(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users/?page=${this.props.pageCount}`, {
-            withCredentials: true
-        })
-            .then((response: any) => {
-                this.props.getTotalCountAction(response.data.totalCount)
-                this.props.getUsersAction(response.data.items)
+        usersAPI.getUsers(this.props.pageCount).then((response: any) => {
+                this.props.getTotalCountAction(response.totalCount)
+                this.props.getUsersAction(response.items)
                 this.props.loaderAction(false)
             })
     }
@@ -27,23 +24,41 @@ class UsersContainer extends React.Component<any, any> {
     chengePage = (count: any) => {
         this.props.loaderAction(true)
         this.props.chengePageAction(count)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users/?page=${count}`, {
-            withCredentials: true
-        })
-            .then((response: any) => {
-                console.log(response.data.items)
-                this.props.getUsersAction(response.data.items)
+        usersAPI.getUsers(count).then((response: any) => {
+                this.props.getUsersAction(response.items)
                 this.props.loaderAction(false)
             })
     }
+
+    followUser = (id: string) => {
+        this.props.followingDisabledAction(true)
+        getFollowing(id).then(response => {
+            if (response.resultCode === 0) {
+                this.props.followedAction(id)
+                this.props.followingDisabledAction(false)
+            }
+        })
+    }
+    unfollowUser = (id: string) => {
+        this.props.followingDisabledAction(true)
+        getUnFollowing(id).then(response => {
+            if (response.resultCode === 0) {
+                this.props.followedAction(id)
+                this.props.followingDisabledAction(false)
+            }
+        })
+    }
+
 
     render () {
         return <Users
             users={this.props.users}
             totalCount={this.props.totalCount}
             loader={this.props.loader}
+            followingDisabled={this.props.followingDisabled}
             chengePage={this.chengePage}
-            folowedAction={this.props.folowedAction}
+            followUser={this.followUser}
+            unfollowUser={this.unfollowUser}
         />
     }
 }
@@ -52,7 +67,9 @@ const mapStateToProps = (state: any) => ({
     users: state.userReducer.users,
     pageCount: state.userReducer.pageCount,
     totalCount: state.userReducer.totalCount,
-    loader: state.userReducer.loader
+    loader: state.userReducer.loader,
+    folowed: state.userReducer.folowed,
+    followingDisabled: state.userReducer.followingDisabled
 })
 
 
@@ -61,7 +78,8 @@ const mapDispatchToProps = {
     getTotalCountAction,
     chengePageAction,
     loaderAction,
-    folowedAction
+    followedAction,
+    followingDisabledAction
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)

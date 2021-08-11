@@ -9,7 +9,7 @@ export const rootReducer = combineReducers({
     profileReducer,
     dialodsReduscer,
     userReducer,
-    authReduscer
+    authReduscer,
 });
 
 export type StoreType = ReturnType<typeof rootReducer>
