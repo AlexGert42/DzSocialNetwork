@@ -2,24 +2,14 @@ import { connect } from 'react-redux'
 import { Header } from './Header'
 import React from "react";
 import {StoreType} from "../../store/reducers";
-import axios from "axios";
-import {isFetchingAuth, setAuthData} from "../../store/auth/actions";
+import {authMeThunk, isFetchingAuth, setAuthData} from "../../store/auth/actions";
 import {withRouter} from "react-router-dom";
 
 
 class HeaderContainer extends React.Component<any, any>  {
 
     componentDidMount() {
-        this.props.isFetchingAuth(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true
-        })
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    this.props.setAuthData(res.data.data)
-                    this.props.isFetchingAuth(false)
-                }
-            })
+        this.props.authMeThunk()
     }
 
 
@@ -36,7 +26,9 @@ const mapStateToProps = (state: StoreType) => ({
 })
 const mapDispatchToProps = ({
     setAuthData,
-    isFetchingAuth
+    isFetchingAuth,
+
+    authMeThunk
 })
 
 

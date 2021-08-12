@@ -10,7 +10,7 @@ const initialState = {
     pageCount: 1,
     totalCount: 0,
     loader: false,
-    followingDisabled: false
+    followingDisabled: []
 }
 
 export const userReducer = (state = initialState, action: any) => {
@@ -52,8 +52,12 @@ export const userReducer = (state = initialState, action: any) => {
         case FOLLOWING_PROGRESS:
             return {
                 ...state,
-                followingDisabled: action.payload
+                followingDisabled: action.isFetching ?
+                    [...state.followingDisabled, action.payload]
+                    :
+                    [...state.followingDisabled.filter(id => id !== action.payload)]
             }
-        default: return state
+        default:
+            return state
     }
 }

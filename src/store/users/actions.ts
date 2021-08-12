@@ -1,5 +1,6 @@
 
 import {CHENGE_COUNT, GET_USERS, LOADING, TOTAL_COUNT, FOLLOWED, FOLLOWING_PROGRESS} from "./reduser";
+import {usersAPI} from "../../api/api";
 
 
 export const getUsersAction = (users: any) => ({
@@ -27,7 +28,41 @@ export const followedAction = (id: any) => ({
     payload: id
 })
 
-export const followingDisabledAction = (value: any) => ({
+export const followingDisabledAction = (value: boolean, id: string) => ({
     type: FOLLOWING_PROGRESS,
-    payload: value
+    payload: id,
+    isFetching: value
 })
+
+
+/////////
+
+export const getUsersThunk = (count: number) => (dispatch: any) => {
+    dispatch(loaderAction(true))
+    dispatch(chengePageAction(count))
+    usersAPI.getUsers(count).then((response: any) => {
+        dispatch(getTotalCountAction(response.totalCount))
+        dispatch(getUsersAction(response.items))
+        dispatch(loaderAction(false))
+    })
+}
+
+export const chengeFollowingUserThunk = (flag: number, id: string) => (dispatch: any) => {
+    dispatch(followingDisabledAction(true, id))
+    let followResult
+    if (flag === 0) {
+        followResult = usersAPI.getUnFollowing(id)
+    } else {
+        followResult = usersAPI.getFollowing(id)
+    }
+
+    followResult.then((response: any) => {
+        console.log(response)
+        if (response.resultCode === 0) {
+
+            dispatch(followedAction(id))
+            dispatch(followingDisabledAction(false, id))
+        }
+    })
+}
+

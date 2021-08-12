@@ -1,56 +1,32 @@
 import {connect} from "react-redux"
 import {Users} from "./Users"
 import {
+    chengeFollowingUserThunk,
     chengePageAction,
     followedAction, followingDisabledAction,
     getTotalCountAction,
-    getUsersAction,
+    getUsersAction, getUsersThunk,
     loaderAction
 } from "../../../store/users/actions";
 import React from "react";
-import {getFollowing, getUnFollowing, usersAPI} from "../../../api/api";
+
 
 class UsersContainer extends React.Component<any, any> {
 
     componentDidMount() {
-        this.props.loaderAction(true)
-        usersAPI.getUsers(this.props.pageCount).then((response: any) => {
-                this.props.getTotalCountAction(response.totalCount)
-                this.props.getUsersAction(response.items)
-                this.props.loaderAction(false)
-            })
+        this.props.getUsersThunk(this.props.pageCount)
     }
 
     chengePage = (count: any) => {
-        this.props.loaderAction(true)
-        this.props.chengePageAction(count)
-        usersAPI.getUsers(count).then((response: any) => {
-                this.props.getUsersAction(response.items)
-                this.props.loaderAction(false)
-            })
+        this.props.getUsersThunk(count)
     }
 
-    followUser = (id: string) => {
-        this.props.followingDisabledAction(true)
-        getFollowing(id).then(response => {
-            if (response.resultCode === 0) {
-                this.props.followedAction(id)
-                this.props.followingDisabledAction(false)
-            }
-        })
-    }
-    unfollowUser = (id: string) => {
-        this.props.followingDisabledAction(true)
-        getUnFollowing(id).then(response => {
-            if (response.resultCode === 0) {
-                this.props.followedAction(id)
-                this.props.followingDisabledAction(false)
-            }
-        })
+    followUser = (flag: number, id: string) => {
+        this.props.chengeFollowingUserThunk(flag, id)
     }
 
 
-    render () {
+    render() {
         return <Users
             users={this.props.users}
             totalCount={this.props.totalCount}
@@ -58,7 +34,6 @@ class UsersContainer extends React.Component<any, any> {
             followingDisabled={this.props.followingDisabled}
             chengePage={this.chengePage}
             followUser={this.followUser}
-            unfollowUser={this.unfollowUser}
         />
     }
 }
@@ -79,7 +54,10 @@ const mapDispatchToProps = {
     chengePageAction,
     loaderAction,
     followedAction,
-    followingDisabledAction
+    followingDisabledAction,
+
+    getUsersThunk,
+    chengeFollowingUserThunk
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)

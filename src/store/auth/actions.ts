@@ -1,4 +1,5 @@
 import {SET_USER_DATA, IS_FETCHING} from "./reduser";
+import {authAPI} from "../../api/api";
 
 
 export const setAuthData = (data: any) => ({
@@ -11,6 +12,18 @@ export const isFetchingAuth = (value: boolean) => ({
     payload: value
 })
 
+////////
+
+export const authMeThunk = () => (dispatch: any) => {
+    dispatch(isFetchingAuth(true))
+    authAPI.authMe()
+        .then(res => {
+            if (res.resultCode === 0) {
+                dispatch(setAuthData(res.data))
+                dispatch(isFetchingAuth(false))
+            }
+        })
+}
 
 
 

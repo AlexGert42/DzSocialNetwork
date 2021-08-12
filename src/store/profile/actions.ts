@@ -1,4 +1,5 @@
 import { v1 } from "uuid"
+import {profileAPI} from "../../api/api";
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_TEST'
 export const SET_USER_PROFILE = 'SET_USER_PROFILE'
@@ -41,6 +42,16 @@ export const setUserProfile = (profile: any): SetUserProfileType => ({
     type: SET_USER_PROFILE,
     payload: profile
 })
+
+////////////////////////
+
+
+
+export const getProfileThunk = (id: number) => (dispatch: any) => {
+    profileAPI.getProfile(id).then(res => {
+        dispatch(setUserProfile(res.data))
+    })
+}
 
 
 

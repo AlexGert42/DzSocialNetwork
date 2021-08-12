@@ -9,9 +9,8 @@ export const Users = (props: any) => {
 
 
     const followHendler = (flag: number, id: string) => {
-        flag === 0 ? props.unfollowUser(id) : props.followUser(id)
+        props.followUser(flag, id)
     }
-
 
     return (
 
@@ -27,7 +26,6 @@ export const Users = (props: any) => {
                                 return <div key={i} onClick={() => props.chengePage(i + 1)}
                                             style={{margin: '5px'}}>{i + 1}</div>
                             })
-
                         }
                     </div>
                     {
@@ -52,9 +50,14 @@ export const Users = (props: any) => {
                             </p>
                             {
                                 el.followed ?
-                                    <button disabled={props.followingDisabled} style={props.followingDisabled ? {background: 'red'} : {background: 'blue'} } onClick={() => followHendler(0, el.id)}>Followed</button>
+                                    <button
+                                        disabled={props.followingDisabled.some((id: string) => id === el.id)}
+                                            className={'button'}
+                                            onClick={() => followHendler(0, el.id)}>Followed</button>
                                     :
-                                    <button disabled={props.followingDisabled} style={props.followingDisabled ? {background: 'red'} : {background: 'blue'} } onClick={() => followHendler(1, el.id)}>Onfollowed</button>
+                                    <button disabled={props.followingDisabled.some((id: string) => id === el.id)}
+                                            className={'button'}
+                                            onClick={() => followHendler(1, el.id)}>Onfollowed</button>
                             }
 
 
