@@ -19,10 +19,10 @@ class HeaderContainer extends React.Component<any, any>  {
 }
 
 const mapStateToProps = (state: StoreType) => ({
-    login: state.authReduscer.login,
-    id: state.authReduscer.id,
-    email: state.authReduscer.email,
-    isFetching: state.authReduscer.isFetching
+    login: state.authReducer.login,
+    id: state.authReducer.id,
+    email: state.authReducer.email,
+    isFetching: state.authReducer.isFetching
 })
 const mapDispatchToProps = ({
     setAuthData,

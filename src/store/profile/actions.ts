@@ -3,6 +3,7 @@ import {profileAPI} from "../../api/api";
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_TEST'
 export const SET_USER_PROFILE = 'SET_USER_PROFILE'
+export const SET_STATUS = 'SET_STATUS'
 
 export type AddPostType = {
     type: 'ADD_POST'
@@ -43,15 +44,43 @@ export const setUserProfile = (profile: any): SetUserProfileType => ({
     payload: profile
 })
 
+export type SetStatusProfileType = {
+    type: 'SET_STATUS'
+    payload: string
+}
+export const setStatusProfile = (status: string): SetStatusProfileType => ({
+    type: SET_STATUS,
+    payload: status
+})
+
+
 ////////////////////////
 
 
 
-export const getProfileThunk = (id: number) => (dispatch: any) => {
+export const getProfileThunk = (id: any) => (dispatch: any) => {
     profileAPI.getProfile(id).then(res => {
-        dispatch(setUserProfile(res.data))
+        dispatch(setUserProfile(res))
     })
 }
+
+export const getStatusThunk = (id: string) => (dispatch: any) => {
+    profileAPI.getStatus(id).then(res => {
+        dispatch(setStatusProfile(res))
+    })
+}
+export const updateStatusThunk = (status: string) => (dispatch: any) => {
+    profileAPI.updateStatus(status).then(res => {
+        if (res.resultCode === 0) {
+            console.log(res)
+            dispatch(setStatusProfile(status))
+        }
+
+
+    })
+}
+
+
 
 
 

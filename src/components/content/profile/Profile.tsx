@@ -1,15 +1,18 @@
 import s from './Profile.module.scss'
 import PostsContainer from './posts/PostsContainer'
-import avatar from '../../../defaultStyle/img/avatar_smoll.png'
 import spiner_loader from "../../../defaultStyle/img/SpinnerLoading.gif";
 import React from "react";
+import {ProfileStatus} from "./profileStatus/ProfileStatus";
 
 type ProfilePropsType = {
     profile: any
+    status: string
+    setChengeStatus: (status: string) => void
 }
 
 
-export const Profile = ({profile}: ProfilePropsType) => {
+export const Profile = ({profile, setChengeStatus, status}: ProfilePropsType) => {
+
     if (!profile) {
         return <img src={spiner_loader} alt=""/>
     } else {
@@ -19,6 +22,8 @@ export const Profile = ({profile}: ProfilePropsType) => {
                     <div className={s.profile__avatar}>
 
                         <h1 className={s.profile__name}>{profile.fullName}</h1>
+
+                       <ProfileStatus setChengeStatus={setChengeStatus} statusText={status}/>
 
                         <div className={s.profile__discription}>
                             <div className={s.profile__img}>

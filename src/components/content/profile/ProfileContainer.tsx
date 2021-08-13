@@ -1,37 +1,53 @@
 import React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import {Profile} from "./Profile";
-import {getProfileThunk, setUserProfile} from "../../../store/profile/actions";
+import {getProfileThunk, getStatusThunk, updateStatusThunk} from "../../../store/profile/actions";
 import {StoreType} from "../../../store/reducers";
-import { withRouter } from "react-router-dom";
-
+import {withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component<any, any> {
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) {
+        if (userId === ':userId') {
             userId = 17952
         }
         this.props.getProfileThunk(userId)
+        this.props.getStatusThunk(userId)
+    }
+
+    setChengeStatus = (status: string) => {
+        this.props.updateStatusThunk(status)
     }
 
 
     render() {
-        return <Profile profile={this.props.profile}/>
+        return <Profile
+            profile={this.props.profile}
+            status={this.props.status}
+            setChengeStatus={this.setChengeStatus}
+        />
     }
 }
 
 const mapStateToProps = (state: StoreType) => ({
     profile: state.profileReducer.profile,
+    status: state.profileReducer.status,
+    profileId: state.authReducer.id,//?????
 
 
-    profileId: state.authReduscer.id//?????
 })
 const mapDispatchToProps = ({
-    setUserProfile,
-    getProfileThunk
+    getProfileThunk,
+    getStatusThunk,
+    updateStatusThunk
 })
 
-const WithUrlDataContainerComponent = withRouter(ProfileContainer)
-export default connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent)
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer)

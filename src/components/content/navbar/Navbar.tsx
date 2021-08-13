@@ -12,7 +12,7 @@ export const Navbar = () => {
                 </h2>
                 <ul className={s.navbar__list}>
                     <li className={s.navbar__item}>
-                        <NavLink to={'/profile/:userId'}>profile</NavLink>
+                        <NavLink to={'/profile/:userId?'}>profile</NavLink>
                     </li>
                     <li className={s.navbar__item}>
                         <NavLink to={'/dialogs'}>dialogs</NavLink>

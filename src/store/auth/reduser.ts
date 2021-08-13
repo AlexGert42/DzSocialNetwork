@@ -11,7 +11,7 @@ const initialState = {
     isFetching: false
 }
 
-export const authReduscer = (state = initialState, action: any) => {
+export const authReducer = (state = initialState, action: any) => {
 switch (action.type) {
     case SET_USER_DATA:
         return {

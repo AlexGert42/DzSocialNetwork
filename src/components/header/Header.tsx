@@ -12,7 +12,7 @@ export const Header = ({isFetching, login, id, email}: any) => {
                 <div className={s.header__login}>
                     <NavLink to={'/login'}>Login</NavLink>
                     <div>
-                        {!isFetching ?
+                        {isFetching ?
                             <div>
                                 Id: {id} <br/>
                                 Login: {login} <br/>

@@ -2,7 +2,7 @@ import {applyMiddleware, combineReducers, createStore} from 'redux'
 import {profileReducer} from "./profile/reduser";
 import {dialodsReduscer} from "./dialogs/reduser";
 import {userReducer} from "./users/reduser";
-import {authReduscer} from "./auth/reduser";
+import {authReducer} from "./auth/reduser";
 import thunk from 'redux-thunk'
 
 
@@ -10,7 +10,7 @@ export const rootReducer = combineReducers({
     profileReducer,
     dialodsReduscer,
     userReducer,
-    authReduscer,
+    authReducer,
 });
 
 export type StoreType = ReturnType<typeof rootReducer>

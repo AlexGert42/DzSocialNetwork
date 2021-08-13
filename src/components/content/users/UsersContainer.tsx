@@ -9,6 +9,8 @@ import {
     loaderAction
 } from "../../../store/users/actions";
 import React from "react";
+import { compose } from 'redux';
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 class UsersContainer extends React.Component<any, any> {
@@ -60,4 +62,9 @@ const mapDispatchToProps = {
     chengeFollowingUserThunk
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(UsersContainer)

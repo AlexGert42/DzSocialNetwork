@@ -52,12 +52,13 @@ export const Users = (props: any) => {
                                 el.followed ?
                                     <button
                                         disabled={props.followingDisabled.some((id: string) => id === el.id)}
-                                            className={'button'}
-                                            onClick={() => followHendler(0, el.id)}>Followed</button>
+                                        className={'button'}
+                                        onClick={() => followHendler(0, el.id)}>Followed</button>
                                     :
-                                    <button disabled={props.followingDisabled.some((id: string) => id === el.id)}
-                                            className={'button'}
-                                            onClick={() => followHendler(1, el.id)}>Onfollowed</button>
+                                    <button
+                                        disabled={props.followingDisabled.some((id: string) => id === el.id)}
+                                        className={'button'}
+                                        onClick={() => followHendler(1, el.id)}>Onfollowed</button>
                             }
 
 

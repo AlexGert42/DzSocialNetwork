@@ -1,44 +1,38 @@
 import {connect} from 'react-redux'
-import {Dialogs} from './Dialogs'
-import style from './Dialogs.module.scss'
-import {useState} from "react";
+import React from "react";
 import {addMessage} from "../../../store/dialogs/actions";
+import style from './Dialogs.module.scss'
+import { Dialogs } from './Dialogs';
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import { compose } from 'redux';
 
 
-const DialogsContainer = ({users, dialogs, addMessage}: any) => {
-    const [dialog, setDialog] = useState([])
-    const [userId, setUserId] = useState('')
+class DialogsContainer extends React.Component<any, any> {
 
 
-    const getMessage = (id: string) => {
-        setDialog(dialogs[id])
-        setUserId(id)
+
+
+
+    render () {
+        return <Dialogs
+            style={style}
+        />
     }
 
-    const addMessageUser = (id: string, text: string) => {
-        addMessage(id, text)
-        setDialog(dialogs[id])
-        setUserId(id)
-    }
-
-
-    return <Dialogs
-        style={style}
-        users={users}
-        dialog={dialog}
-        getMessage={getMessage}
-        addMessageUser={addMessageUser}
-        userId={userId}
-    />
 }
 
 const mapStateToProps = (state: any) => ({
-    users: state.dialodsReduscer.users,
-    dialogs: state.dialodsReduscer.message
+
 })
 
 const mapDispatchToProps = {
     addMessage
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DialogsContainer)
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+
+)
+(DialogsContainer)
+

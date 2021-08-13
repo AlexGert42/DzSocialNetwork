@@ -1,7 +1,15 @@
 import { v1 } from "uuid"
-import {ADD_POST, AddPostType, REMOVE_POST, RemovePostType, SET_USER_PROFILE, SetUserProfileType} from "./actions";
+import {
+    ADD_POST,
+    AddPostType,
+    REMOVE_POST,
+    RemovePostType,
+    SET_USER_PROFILE,
+    SetUserProfileType,
+    SET_STATUS, SetStatusProfileType,
+} from "./actions";
 
-type ActionType = AddPostType | RemovePostType | SetUserProfileType
+type ActionType = AddPostType | RemovePostType | SetUserProfileType | SetStatusProfileType
 
 
 
@@ -13,7 +21,8 @@ const initialState = {
         {id: v1(), name: 'igor', text: 'hfdghfgh fjdsh jgbdsg bgfb ghfb hgfbghf gfdgfd gfgf'},
         {id: v1(), name: 'lix', text: 'hfdghfgh fjdsh jgbdsg bgfb ghfb hgfbghf gfdgfd gfgf'},
     ],
-    profile: null
+    profile: null,
+    status: 'status'
 }
 
 type StateType = typeof initialState
@@ -40,20 +49,14 @@ export const profileReducer = (state: StateType = initialState, action: ActionTy
                 ...state,
                 profile: action.payload
             }
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.payload
+            }
     }
     return state
 }
 
 
-// fullName: '',
-// aboutMe: '',
-// contacts: {
-//     facebook: '',
-//     github: '',
-// },
-// lookingForAJob: false,
-// lookingForAJobDescription: '',
-// photos: {
-//     large: '',
-//     small: ''
-// }
+
