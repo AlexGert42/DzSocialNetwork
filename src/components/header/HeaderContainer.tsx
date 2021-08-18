@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { Header } from './Header'
 import React from "react";
 import {StoreType} from "../../store/reducers";
-import {authMeThunk, isFetchingAuth, setAuthData} from "../../store/auth/actions";
+import {authMeThunk, isFetchingAuth, logoutThunk, setAuthData} from "../../store/auth/actions";
 import {withRouter} from "react-router-dom";
 
 
@@ -12,9 +12,13 @@ class HeaderContainer extends React.Component<any, any>  {
         this.props.authMeThunk()
     }
 
+    logout = () => {
+        this.props.logoutThunk()
+    }
+
 
     render() {
-        return <Header {...this.props} />
+        return <Header {...this.props} logout={this.logout}/>
     }
 }
 
@@ -28,7 +32,9 @@ const mapDispatchToProps = ({
     setAuthData,
     isFetchingAuth,
 
-    authMeThunk
+    authMeThunk,
+
+    logoutThunk
 })
 
 

@@ -3,14 +3,18 @@ import {profileReducer} from "./profile/reduser";
 import {dialodsReduscer} from "./dialogs/reduser";
 import {userReducer} from "./users/reduser";
 import {authReducer} from "./auth/reduser";
-import thunk from 'redux-thunk'
+import {appReducer} from './app/reduser'
+import thunk from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form'
 
 
 export const rootReducer = combineReducers({
+    appReducer,
     profileReducer,
     dialodsReduscer,
     userReducer,
     authReducer,
+    form: formReducer
 });
 
 export type StoreType = ReturnType<typeof rootReducer>

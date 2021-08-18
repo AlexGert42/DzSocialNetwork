@@ -1,6 +1,8 @@
 import {Post} from './post/Post'
-import React, {useState} from "react";
+import React from "react";
 import {postType} from "./PostsContainer";
+import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, requiredField} from "../../../../utils/validators/validators";
 
 
 type postsPropsTYpe = {
@@ -11,35 +13,42 @@ type postsPropsTYpe = {
 }
 
 
-
-
 export const Posts = ({posts, deletePost, attachPost, style}: postsPropsTYpe) => {
-    const [value, setValue] = useState('')
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        if (value.trim()) {
-            attachPost(value)
-            setValue('')
-        }
-
-
+    const postHendler = (data: any) => {
+        console.log(data)
     }
 
     return (
         <div className={style.posts}>
-            <form onSubmit={handleSubmit}>
-                <textarea value={value} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value)} placeholder={'Enter Text'}/>
-                <button type="submit">Enter</button>
-            </form>
-          <div className={style.posts__inner}>
-              {!posts ? false : posts.map((el: postType) => {
-                  return (
-                      <Post key={el.id} style={style} id={el.id} userName={el.name} text={el.text} deletePost={deletePost}/>
-                  )
-              })}
-          </div>
-
+            <ReduxFormPost onSubmit={postHendler}/>
+            <div className={style.posts__inner}>
+                {!posts ? false : posts.map((el: postType) => {
+                    return (
+                        <Post key={el.id} style={style} id={el.id} userName={el.name} text={el.text}
+                              deletePost={deletePost}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }
+
+const maxLength = maxLengthCreator(20)
+
+export const PostForm = (props: any) => {
+
+
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field
+                component={'textarea'}
+                name={'post'}
+                validate={[requiredField, maxLength]}
+            />
+            <button type="submit">Enter</button>
+        </form>
+    )
+}
+const ReduxFormPost = reduxForm({
+    form: 'post'
+})(PostForm)

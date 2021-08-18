@@ -4,7 +4,11 @@ import spiner_loader from "../../defaultStyle/img/SpinnerLoading.gif";
 import React from "react";
 
 
-export const Header = ({isFetching, login, id, email}: any) => {
+export const Header = ({isFetching, login, id, email, logout}: any) => {
+
+    const logoutHendle = () => {
+        logout()
+    }
     return (
         <div className={s.header}>
             <div className={s.header__inner}>
@@ -13,11 +17,17 @@ export const Header = ({isFetching, login, id, email}: any) => {
                     <NavLink to={'/login'}>Login</NavLink>
                     <div>
                         {isFetching ?
-                            <div>
-                                Id: {id} <br/>
-                                Login: {login} <br/>
-                                Email: {email} <br/>
-                            </div>
+                            <>
+                                <div>
+                                    Id: {id} <br/>
+                                    Login: {login} <br/>
+                                    Email: {email} <br/>
+                                </div>
+                                <div>
+                                    <button onClick={logoutHendle}>Logout</button>
+                                </div>
+                            </>
+
                             :
                             <div>
                                 <img src={spiner_loader} alt=""/>
