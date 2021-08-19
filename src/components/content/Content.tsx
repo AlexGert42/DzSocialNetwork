@@ -8,7 +8,6 @@ import LoginContainer from './login/LoginContainer';
 
 
 export const Content = () => {
-
     return (
         <main className={s.content}>
             <div className={s.content__nav}>

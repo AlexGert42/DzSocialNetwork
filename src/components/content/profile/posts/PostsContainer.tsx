@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {addPost} from '../../../../store/profile/actions'
 import {removePost} from "../../../../store/profile/actions";
 import {StoreType} from "../../../../store/reducers";
+import React from 'react';
 
 
 export type postType = {
@@ -19,7 +20,7 @@ type postPropsType = {
 }
 
 
-const PostsContainer = ({posts, addPost, removePost}: postPropsType) => {
+const PostsContainer = React.memo(({posts, addPost, removePost}: postPropsType) => {
 
     const deletePost = (id: string) => removePost(id)
 
@@ -28,7 +29,7 @@ const PostsContainer = ({posts, addPost, removePost}: postPropsType) => {
     return (
         <Posts posts={posts} attachPost={attachPost} deletePost={deletePost} style={style}/>
     )
-}
+})
 
 const mapStateToProps = (state: StoreType) => {
     return {

@@ -1,5 +1,5 @@
 
-export const requiredField = (value: any) => {
+export const requiredField = (value: string[]) => {
     if (value) {
         return undefined
     } else {
@@ -7,9 +7,9 @@ export const requiredField = (value: any) => {
     }
 }
 
-export const maxLengthCreator = (maxLength: number) => (value: any) => {
+export const maxLengthCreator = (maxLength: number) => (value: string[]) => {
     if (value && value.length > maxLength) {
-        return 'Max length is 30 sumbols'
+        return `Max length is ${maxLength} sumbols`
     }
     return undefined
 }

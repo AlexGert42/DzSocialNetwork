@@ -11,9 +11,6 @@ import {
 
 type ActionType = AddPostType | RemovePostType | SetUserProfileType | SetStatusProfileType
 
-
-
-
 const initialState = {
     posts: [
         {id: v1(), name: 'viktor', text: 'hfdghfgh fjdsh jgbdsg bgfb ghfb hgfbghf gfdgfd gfgf'},

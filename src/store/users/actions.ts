@@ -23,7 +23,7 @@ export const loaderAction = (value: any) => ({
     payload: value
 })
 
-export const followedAction = (id: any) => ({
+export const followedAction = (id: string) => ({
     type: FOLLOWED,
     payload: id
 })
@@ -57,9 +57,7 @@ export const chengeFollowingUserThunk = (flag: number, id: string) => (dispatch:
     }
 
     followResult.then((response: any) => {
-        console.log(response)
         if (response.resultCode === 0) {
-
             dispatch(followedAction(id))
             dispatch(followingDisabledAction(false, id))
         }

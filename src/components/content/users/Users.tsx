@@ -5,8 +5,7 @@ import avatar_smoll from '../../../defaultStyle/img/avatar_smoll.png'
 import spiner_loader from '../../../defaultStyle/img/SpinnerLoading.gif'
 
 
-export const Users = (props: any) => {
-
+export const Users = React.memo((props: any) => {
 
     const followHendler = (flag: number, id: string) => {
         props.followUser(flag, id)
@@ -73,5 +72,5 @@ export const Users = (props: any) => {
             }
         </div>
     )
-}
+})
 

@@ -1,5 +1,6 @@
 import { v1 } from "uuid"
 import {profileAPI} from "../../api/api";
+import {Dispatch} from "react";
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_TEST'
 export const SET_USER_PROFILE = 'SET_USER_PROFILE'
@@ -58,25 +59,22 @@ export const setStatusProfile = (status: string): SetStatusProfileType => ({
 
 
 
-export const getProfileThunk = (id: any) => (dispatch: any) => {
+export const getProfileThunk = (id: number) => (dispatch: Dispatch<any>) => {
     profileAPI.getProfile(id).then(res => {
         dispatch(setUserProfile(res))
     })
 }
 
-export const getStatusThunk = (id: string) => (dispatch: any) => {
+export const getStatusThunk = (id: string) => (dispatch: Dispatch<any>) => {
     profileAPI.getStatus(id).then(res => {
         dispatch(setStatusProfile(res))
     })
 }
-export const updateStatusThunk = (status: string) => (dispatch: any) => {
+export const updateStatusThunk = (status: string) => (dispatch: Dispatch<any>) => {
     profileAPI.updateStatus(status).then(res => {
         if (res.resultCode === 0) {
-            console.log(res)
             dispatch(setStatusProfile(status))
         }
-
-
     })
 }
 

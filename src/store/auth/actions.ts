@@ -1,5 +1,6 @@
 import {SET_USER_DATA, IS_FETCHING, DELETE_USER_DATA} from "./reduser";
 import {authAPI} from "../../api/api";
+import {stopSubmit} from "redux-form";
 
 
 export const setAuthData = (data: any) => ({
@@ -33,6 +34,8 @@ export const loginThunk = (login: string, password: string, rememberMe: boolean)
         .then(res => {
             if (res.resultCode === 0) {
                 dispatch(authMeThunk())
+            } else {
+                dispatch(stopSubmit('login', {_error: 'Data id vrong'}))
             }
         })
 }

@@ -1,0 +1,22 @@
+
+.element {
+  margin: 5px 0;
+  .element__field {
+    min-width: 300px;
+    padding: 15px;
+    border-radius: 5px;
+    opacity: .7;
+    &.error {
+      border: 1px solid #de0000;
+    }
+    &:hover {
+      transition: opacity .5s;
+      opacity: 1;
+    }
+  }
+  .element__error {
+    color: #de0000;
+    display: block;
+    margin: 5px 0;
+  }
+}

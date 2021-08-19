@@ -13,7 +13,7 @@ import { compose } from 'redux';
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
-class UsersContainer extends React.Component<any, any> {
+class UsersContainer extends React.PureComponent<any, any> {
 
     componentDidMount() {
         this.props.getUsersThunk(this.props.pageCount)

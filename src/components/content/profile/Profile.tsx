@@ -11,8 +11,7 @@ type ProfilePropsType = {
 }
 
 
-export const Profile = ({profile, setChengeStatus, status}: ProfilePropsType) => {
-
+export const Profile = React.memo(  ({profile, setChengeStatus, status}: ProfilePropsType) => {
     if (!profile) {
         return <img src={spiner_loader} alt=""/>
     } else {
@@ -44,4 +43,4 @@ export const Profile = ({profile, setChengeStatus, status}: ProfilePropsType) =>
             </div>
         )
     }
-}
+})

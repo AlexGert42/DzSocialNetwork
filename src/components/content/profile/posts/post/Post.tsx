@@ -11,7 +11,6 @@ type postPropsType = {
 
 export const Post = ({style, id, userName, text, deletePost}: postPropsType) => {
 
-
     return (
         <div className={style.post}>
             <div className={style.post__avatar}></div>
