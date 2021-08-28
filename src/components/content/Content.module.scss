@@ -1,28 +1,3 @@
-@import "src/defaultStyle/index";
-.content {
-  max-width: 1920px;
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  .content__page {
-    border: 2px solid #242424;
-    margin: 30px;
-    width: 70%;
-    top: 130px;
-    height: 100%;
-    background-color: $contentColor;
-    position: relative;
-    left: 350px;
-  }
-  .content__nav {
-    top: 113px;
-    position: fixed;
-    width: 25%;
-    height: 89vh;
-    background-color: $contentColor;
-    display: inline-block;
-    border: 2px solid #242424;
-  }
+.main {
+  margin-top: 200px;
 }
-

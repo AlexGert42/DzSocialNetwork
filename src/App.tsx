@@ -10,6 +10,7 @@ import spiner from './defaultStyle/img/initSpiner.gif';
 import {StoreType} from "./store/reducers";
 
 
+
 type AppPropsType = {
     initialized: boolean
     initializedThunk: () => void

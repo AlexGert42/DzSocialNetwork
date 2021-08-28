@@ -4,6 +4,7 @@ import React from "react";
 import {StoreType} from "../../store/reducers";
 import {authMeThunk, isFetchingAuth, logoutThunk, setAuthData} from "../../store/auth/actions";
 import {withRouter} from "react-router-dom";
+import {navbarHendler} from "../../store/app/actions";
 
 
 class HeaderContainer extends React.Component<any, any>  {
@@ -15,10 +16,12 @@ class HeaderContainer extends React.Component<any, any>  {
     logout = () => {
         this.props.logoutThunk()
     }
-
+    showNavbar = (value: boolean) => {
+        this.props.navbarHendler(value)
+    }
 
     render() {
-        return <Header {...this.props} logout={this.logout}/>
+        return <Header {...this.props} logout={this.logout} showNavbar={this.showNavbar}/>
     }
 }
 
@@ -34,7 +37,9 @@ const mapDispatchToProps = ({
 
     authMeThunk,
 
-    logoutThunk
+    logoutThunk,
+
+    navbarHendler
 })
 
 

@@ -1,33 +1,33 @@
-@import "src/defaultStyle/index";
-
-.dialog {
-  margin: 20px;
-  border-bottom: 5px solid #5c5c5c;
-  .dialog__users {
-    width: 100%;
-    border: 2px solid #bfbfbf;
-    display: flex;
-    justify-content: space-between;
-    padding: 30px;
-    .dialog__user {
-      padding: 5px 50px;
-      border: 1px solid #fff;
-      margin: 10px;
-      cursor: pointer;
-      &:hover {
-        background-color: white;
-        color: #4c4b4b;
-      }
-    }
-  }
-  .dialog__message {
-
-    .dialog__message_item {
-      padding: 10px;
-      margin: 10px;
-      background-color: #bfbfbf;
-      color: #4c4b4b;
-    }
-
-  }
-}
+//@import "src/defaultStyle/index";
+//
+//.dialog {
+//  margin: 20px;
+//  border-bottom: 5px solid #5c5c5c;
+//  .dialog__users {
+//    width: 100%;
+//    border: 2px solid #bfbfbf;
+//    display: flex;
+//    justify-content: space-between;
+//    padding: 30px;
+//    .dialog__user {
+//      padding: 5px 50px;
+//      border: 1px solid #fff;
+//      margin: 10px;
+//      cursor: pointer;
+//      &:hover {
+//        background-color: white;
+//        color: #4c4b4b;
+//      }
+//    }
+//  }
+//  .dialog__message {
+//
+//    .dialog__message_item {
+//      padding: 10px;
+//      margin: 10px;
+//      background-color: #bfbfbf;
+//      color: #4c4b4b;
+//    }
+//
+//  }
+//}

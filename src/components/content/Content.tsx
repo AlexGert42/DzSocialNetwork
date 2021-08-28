@@ -5,23 +5,29 @@ import DialogsContainer from './dialogs/DialogsContainer'
 import {Redirect, Route, Switch} from "react-router-dom";
 import UsersContainer from './users/UsersContainer';
 import LoginContainer from './login/LoginContainer';
+import {Col, Row } from 'antd';
+import NavbarContainer from './navbar/NavbarContainer';
+
 
 
 export const Content = () => {
+
+
     return (
-        <main className={s.content}>
-            <div className={s.content__nav}>
-                <Navbar/>
-            </div>
-            <div className={s.content__page}>
+        <Row className={s.main}>
+            {/*<Col span={5} offset={1}>*/}
+                <NavbarContainer/>
+            {/*</Col>*/}
+
+            <Col span={24}>
                 <Switch>
                     <Route path={'/'} exact render={() => <Redirect to={'/profile/:userId?'}/>}/>
                     <Route path={'/login'} component={LoginContainer}/>
-                    <Route path={'/profile/:userId?'} component={ProfileContainer} />
+                    <Route path={'/profile/:userId?'} component={ProfileContainer}/>
                     <Route path={'/dialogs'} component={DialogsContainer}/>
                     <Route path={'/users'} component={UsersContainer}/>
                 </Switch>
-            </div>
-        </main>
+            </Col>
+        </Row>
     )
 }
